@@ -28,7 +28,7 @@ git init
 git add dubai_safety_map_v2.py index.html README.md
 git commit -m "Initial safety map site"
 git branch -M main
-git remote add origin https://github.com/<your-username>/dubai-safety-map.git
+git remote add origin https://github.com/YOUR_GITHUB_USERNAME/dubai-safety-map.git
 git push -u origin main
 ```
 
@@ -41,7 +41,9 @@ git push -u origin main
 
 Your site will be live at:
 
-`https://<your-username>.github.io/dubai-safety-map/`
+`https://YOUR_GITHUB_USERNAME.github.io/dubai-safety-map/`
+
+Note: do not include angle brackets (`<` `>`) in terminal commands.
 
 ## 4) Update later
 

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dubai Safety Map — 28 Feb 2026  19:48 UTC</title>
+<title>Dubai Safety Map — 28 Feb 2026  19:55 UTC</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow+Condensed:wght@400;600;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
@@ -165,6 +165,21 @@
     font-family: var(--mono); font-size: 10px;
     color: var(--dim); padding: 10px 16px; text-align: center;
     border-top: 1px solid var(--border); margin-top: auto;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    flex-wrap: wrap;
+  }
+  .ts .sep { opacity: .35; }
+  .contact-link {
+    color: var(--dim);
+    text-decoration: none;
+    opacity: .72;
+    border-bottom: 1px dotted transparent;
+    transition: opacity .2s ease, border-color .2s ease, color .2s ease;
+  }
+  .contact-link:hover {
+    opacity: 1;
+    color: #4a3a2a;
+    border-bottom-color: #8a7a6a;
   }
 
   .leaflet-control-zoom a {
@@ -197,7 +212,7 @@
 <header>
   <div>
     <div class="title">Dubai Safety Map</div>
-    <div class="subtitle">CIVILIAN SAFETY ADVISORY · 28 Feb 2026  19:48 UTC</div>
+    <div class="subtitle">CIVILIAN SAFETY ADVISORY · 28 Feb 2026  19:55 UTC</div>
   </div>
   <div class="pills">
     <div class="pill red">CONFLICT ACTIVE</div>
@@ -250,7 +265,11 @@
       <div class="adv info"><div class="adv-icon">i</div><div>Civilian risk can come from debris, misfires, and proximity to ports and bases.</div></div>
     </div>
 
-    <div class="ts">28 Feb 2026  19:48 UTC</div>
+    <div class="ts">
+      <span>28 Feb 2026  19:55 UTC</span>
+      <span class="sep">|</span>
+      <a class="contact-link" href="https://www.linkedin.com/in/shivangagarwal22/" target="_blank" rel="noopener noreferrer">updates: Shivang (LinkedIn)</a>
+    </div>
   </div>
 </div>
 

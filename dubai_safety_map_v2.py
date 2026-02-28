@@ -68,6 +68,7 @@ OUTER_RADIUS_KM = 12
 AWARE_RADIUS_KM = 22
 
 TIMESTAMP = datetime.now(timezone.utc).strftime("%d %b %Y  %H:%M UTC")
+CONTACT_URL = "https://www.linkedin.com/in/shivangagarwal22/"
 
 
 def generate_html(output_path="index.html"):
@@ -240,6 +241,21 @@ def generate_html(output_path="index.html"):
     font-family: var(--mono); font-size: 10px;
     color: var(--dim); padding: 10px 16px; text-align: center;
     border-top: 1px solid var(--border); margin-top: auto;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    flex-wrap: wrap;
+  }}
+  .ts .sep {{ opacity: .35; }}
+  .contact-link {{
+    color: var(--dim);
+    text-decoration: none;
+    opacity: .72;
+    border-bottom: 1px dotted transparent;
+    transition: opacity .2s ease, border-color .2s ease, color .2s ease;
+  }}
+  .contact-link:hover {{
+    opacity: 1;
+    color: #4a3a2a;
+    border-bottom-color: #8a7a6a;
   }}
 
   .leaflet-control-zoom a {{
@@ -325,7 +341,11 @@ def generate_html(output_path="index.html"):
       <div class="adv info"><div class="adv-icon">i</div><div>Civilian risk can come from debris, misfires, and proximity to ports and bases.</div></div>
     </div>
 
-    <div class="ts">{TIMESTAMP}</div>
+    <div class="ts">
+      <span>{TIMESTAMP}</span>
+      <span class="sep">|</span>
+      <a class="contact-link" href="{CONTACT_URL}" target="_blank" rel="noopener noreferrer">updates: Shivang (LinkedIn)</a>
+    </div>
   </div>
 </div>
 
