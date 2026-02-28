@@ -291,7 +291,7 @@ def generate_html(output_path="index.html"):
   <div>
     <div class="title">Dubai Safety Map</div>
     <div class="subtitle">CIVILIAN SAFETY ADVISORY · {TIMESTAMP}</div>
-    <a class="header-contact" href="{CONTACT_URL}" target="_blank" rel="noopener noreferrer">updates by Shivang on LinkedIn</a>
+    <a class="header-contact" href="{CONTACT_URL}" target="_blank" rel="noopener noreferrer">To give updates message Shivang on LinkedIn</a>
   </div>
   <div class="pills">
     <div class="pill red">CONFLICT ACTIVE</div>
