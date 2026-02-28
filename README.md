@@ -41,7 +41,7 @@ git push -u origin main
 
 Your site will be live at:
 
-`https://YOUR_GITHUB_USERNAME.github.io/dubai-safety-map/`
+`https://shivang-a.github.io/dubai-safety-map/`
 
 Note: do not include angle brackets (`<` `>`) in terminal commands.
 
