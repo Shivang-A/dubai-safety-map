@@ -1,8 +1,6 @@
 import json
 from datetime import datetime, timezone
 
-# Dubai Safety Map Generator v2
-# Generates an interactive HTML map with configurable risk radii.
 
 LOCATIONS = [
     {
