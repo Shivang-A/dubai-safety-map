@@ -101,10 +101,11 @@ def generate_html(output_path="index.html"):
     background: var(--bg);
     color: var(--text);
     font-family: var(--ui);
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
   }}
 
   header {{
@@ -126,6 +127,23 @@ def generate_html(output_path="index.html"):
     font-family: var(--mono); font-size: 11px;
     color: #a09080; margin-top: 2px; letter-spacing: 1px;
   }}
+  .header-contact {{
+    display: inline-block;
+    margin-top: 6px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.8px;
+    color: #9f8f7f;
+    text-decoration: none;
+    opacity: .85;
+    border-bottom: 1px dotted transparent;
+    transition: color .2s ease, opacity .2s ease, border-color .2s ease;
+  }}
+  .header-contact:hover {{
+    color: #d8c8b8;
+    opacity: 1;
+    border-bottom-color: #8f7f6f;
+  }}
   .pills {{ display:flex; gap:10px; align-items:center; }}
   .pill {{
     font-family: var(--mono); font-size: 11px;
@@ -138,7 +156,7 @@ def generate_html(output_path="index.html"):
   .pill.amber {{ color:#ffaa00; background:rgba(224,96,0,.12); animation-duration:.9s; }}
   @keyframes blink {{ 0%,100%{{opacity:1}} 50%{{opacity:.3}} }}
 
-  .main {{ display:flex; flex:1; overflow:hidden; }}
+  .main {{ display:flex; flex:1; overflow:visible; }}
   #map  {{ flex:1; }}
 
   .sidebar {{
@@ -239,21 +257,6 @@ def generate_html(output_path="index.html"):
     font-family: var(--mono); font-size: 10px;
     color: var(--dim); padding: 10px 16px; text-align: center;
     border-top: 1px solid var(--border); margin-top: auto;
-    display: flex; align-items: center; justify-content: center; gap: 8px;
-    flex-wrap: wrap;
-  }}
-  .ts .sep {{ opacity: .35; }}
-  .contact-link {{
-    color: var(--dim);
-    text-decoration: none;
-    opacity: .72;
-    border-bottom: 1px dotted transparent;
-    transition: opacity .2s ease, border-color .2s ease, color .2s ease;
-  }}
-  .contact-link:hover {{
-    opacity: 1;
-    color: #4a3a2a;
-    border-bottom-color: #8a7a6a;
   }}
 
   .leaflet-control-zoom a {{
@@ -275,9 +278,10 @@ def generate_html(output_path="index.html"):
 
   @media (max-width: 900px) {{
     .main {{ flex-direction: column; }}
-    #map {{ min-height: 55vh; }}
-    .sidebar {{ width: 100%; border-left: 0; border-top: 2px solid var(--border); }}
+    #map {{ min-height: 48vh; }}
+    .sidebar {{ width: 100%; border-left: 0; border-top: 2px solid var(--border); overflow: visible; }}
     header {{ flex-direction: column; align-items: flex-start; gap: 8px; }}
+    .pills {{ flex-wrap: wrap; }}
   }}
 </style>
 </head>
@@ -287,6 +291,7 @@ def generate_html(output_path="index.html"):
   <div>
     <div class="title">Dubai Safety Map</div>
     <div class="subtitle">CIVILIAN SAFETY ADVISORY · {TIMESTAMP}</div>
+    <a class="header-contact" href="{CONTACT_URL}" target="_blank" rel="noopener noreferrer">updates by Shivang on LinkedIn</a>
   </div>
   <div class="pills">
     <div class="pill red">CONFLICT ACTIVE</div>
@@ -339,17 +344,23 @@ def generate_html(output_path="index.html"):
       <div class="adv info"><div class="adv-icon">i</div><div>Civilian risk can come from debris, misfires, and proximity to ports and bases.</div></div>
     </div>
 
-    <div class="ts">
-      <span>{TIMESTAMP}</span>
-      <span class="sep">|</span>
-      <a class="contact-link" href="{CONTACT_URL}" target="_blank" rel="noopener noreferrer">updates: Shivang (LinkedIn)</a>
-    </div>
+    <div class="ts">{TIMESTAMP}</div>
   </div>
 </div>
 
 <script>
 const LOCS = {locations_json};
-const map = L.map('map', {{ zoomControl: true }}).setView([25.05, 55.15], 10);
+const isMobileViewport = window.matchMedia('(max-width: 900px)').matches;
+const map = L.map('map', {{
+  zoomControl: true,
+  dragging: !isMobileViewport,
+  touchZoom: !isMobileViewport,
+  doubleClickZoom: !isMobileViewport,
+  scrollWheelZoom: !isMobileViewport,
+  boxZoom: !isMobileViewport,
+  keyboard: !isMobileViewport,
+  tap: !isMobileViewport
+}}).setView([25.05, 55.15], 10);
 
 L.tileLayer('https://{{s}}.basemaps.cartocdn.com/rastertiles/voyager/{{z}}/{{x}}/{{y}}{{r}}.png', {{
   subdomains: 'abcd',
