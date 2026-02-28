@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dubai Safety Map — 28 Feb 2026  20:14 UTC</title>
+<title>Dubai Safety Map — 28 Feb 2026  20:24 UTC</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow+Condensed:wght@400;600;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
@@ -216,8 +216,8 @@
 <header>
   <div>
     <div class="title">Dubai Safety Map</div>
-    <div class="subtitle">CIVILIAN SAFETY ADVISORY · 28 Feb 2026  20:14 UTC</div>
-    <a class="header-contact" href="https://www.linkedin.com/in/shivangagarwal22/" target="_blank" rel="noopener noreferrer">updates by Shivang on LinkedIn</a>
+    <div class="subtitle">CIVILIAN SAFETY ADVISORY · 28 Feb 2026  20:24 UTC</div>
+    <a class="header-contact" href="https://www.linkedin.com/in/shivangagarwal22/" target="_blank" rel="noopener noreferrer">To give update message Shivang on Linkedin</a>
   </div>
   <div class="pills">
     <div class="pill red">CONFLICT ACTIVE</div>
@@ -270,7 +270,7 @@
       <div class="adv info"><div class="adv-icon">i</div><div>Civilian risk can come from debris, misfires, and proximity to ports and bases.</div></div>
     </div>
 
-    <div class="ts">28 Feb 2026  20:14 UTC</div>
+    <div class="ts">28 Feb 2026  20:24 UTC</div>
   </div>
 </div>
 
@@ -317,16 +317,15 @@ const LOCS = [
     "risk": "incident"
   }
 ];
-const isMobileViewport = window.matchMedia('(max-width: 900px)').matches;
 const map = L.map('map', {
   zoomControl: true,
-  dragging: !isMobileViewport,
-  touchZoom: !isMobileViewport,
-  doubleClickZoom: !isMobileViewport,
-  scrollWheelZoom: !isMobileViewport,
-  boxZoom: !isMobileViewport,
-  keyboard: !isMobileViewport,
-  tap: !isMobileViewport
+  dragging: true,
+  touchZoom: true,
+  doubleClickZoom: true,
+  scrollWheelZoom: true,
+  boxZoom: true,
+  keyboard: true,
+  tap: true
 }).setView([25.05, 55.15], 10);
 
 L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {

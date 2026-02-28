@@ -291,7 +291,7 @@ def generate_html(output_path="index.html"):
   <div>
     <div class="title">Dubai Safety Map</div>
     <div class="subtitle">CIVILIAN SAFETY ADVISORY · {TIMESTAMP}</div>
-    <a class="header-contact" href="{CONTACT_URL}" target="_blank" rel="noopener noreferrer">To give updates message Shivang on LinkedIn</a>
+    <a class="header-contact" href="{CONTACT_URL}" target="_blank" rel="noopener noreferrer">To give update message Shivang on Linkedin</a>
   </div>
   <div class="pills">
     <div class="pill red">CONFLICT ACTIVE</div>
@@ -350,16 +350,15 @@ def generate_html(output_path="index.html"):
 
 <script>
 const LOCS = {locations_json};
-const isMobileViewport = window.matchMedia('(max-width: 900px)').matches;
 const map = L.map('map', {{
   zoomControl: true,
-  dragging: !isMobileViewport,
-  touchZoom: !isMobileViewport,
-  doubleClickZoom: !isMobileViewport,
-  scrollWheelZoom: !isMobileViewport,
-  boxZoom: !isMobileViewport,
-  keyboard: !isMobileViewport,
-  tap: !isMobileViewport
+  dragging: true,
+  touchZoom: true,
+  doubleClickZoom: true,
+  scrollWheelZoom: true,
+  boxZoom: true,
+  keyboard: true,
+  tap: true
 }}).setView([25.05, 55.15], 10);
 
 L.tileLayer('https://{{s}}.basemaps.cartocdn.com/rastertiles/voyager/{{z}}/{{x}}/{{y}}{{r}}.png', {{
