@@ -1,63 +1,17 @@
-# Dubai Safety Map (GitHub Pages)
+# Dubai Safety Map
 
-This project generates a static `index.html` map that can be hosted free on GitHub Pages.
+This website is a simple public safety map for friends and family in Dubai.
 
-## 1) Generate the website
+It shows marked high-risk zones and advisory radius circles so people can quickly understand which areas may need extra caution.
 
-```bash
-python3 dubai_safety_map_v2.py
-```
+Live website:
 
-This creates/updates `index.html`.
+https://shivang-a.github.io/dubai-safety-map/
 
-## 2) Preview locally (optional)
+Important:
 
-```bash
-python3 -m http.server 8000
-```
+This page is only an awareness tool. For urgent decisions, always follow official UAE authorities and emergency services.
 
-Open `http://localhost:8000`.
+For updates:
 
-## 3) Publish on GitHub Pages
-
-1. Create a new GitHub repo (for example: `dubai-safety-map`).
-2. In this folder, run:
-
-```bash
-git init
-git add dubai_safety_map_v2.py index.html README.md
-git commit -m "Initial safety map site"
-git branch -M main
-git remote add origin https://github.com/YOUR_GITHUB_USERNAME/dubai-safety-map.git
-git push -u origin main
-```
-
-3. On GitHub: `Repo -> Settings -> Pages`.
-4. Under **Build and deployment**:
-   - Source: `Deploy from a branch`
-   - Branch: `main`
-   - Folder: `/ (root)`
-5. Save and wait 1-3 minutes.
-
-Your site will be live at:
-
-`https://shivang-a.github.io/dubai-safety-map/`
-
-Note: do not include angle brackets (`<` `>`) in terminal commands.
-
-## 4) Update later
-
-Whenever you change the Python data:
-
-```bash
-python3 dubai_safety_map_v2.py
-git add dubai_safety_map_v2.py index.html
-git commit -m "Update safety data"
-git push
-```
-
-GitHub Pages will auto-redeploy.
-
-## Important
-
-Treat map data as advisory only and verify urgent safety info from official UAE authorities before acting.
+To give update message Shivang on Linkedin: https://www.linkedin.com/in/shivangagarwal22/
