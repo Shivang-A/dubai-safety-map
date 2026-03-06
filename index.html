@@ -241,6 +241,26 @@ map.addControl(new maplibregl.NavigationControl(), 'top-left');
 map.addControl(new maplibregl.AttributionControl({ compact:true }), 'bottom-right');
 
 map.on('style.load', () => {
+  // Hide ALL road shield / highway-number badge layers (white box icons)
+  map.getStyle().layers.forEach(layer => {
+    const id = (layer.id || '').toLowerCase();
+    if (
+      id.includes('shield') || id.includes('highway-number') ||
+      id.includes('road-number') || id.includes('motorway-number') ||
+      id.includes('trunk-number') || id.includes('primary-number') ||
+      id.includes('secondary-number') || id.includes('ref')
+    ) {
+      try { map.setLayoutProperty(layer.id, 'visibility', 'none'); } catch(e) {}
+    }
+    // Also hide any symbol layer whose text-field is only 'ref' (pure number badge)
+    if (layer.type === 'symbol') {
+      const tf = JSON.stringify((layer.layout || {})['text-field'] || '');
+      if (tf === '"ref"' || tf === '["get","ref"]') {
+        try { map.setLayoutProperty(layer.id, 'visibility', 'none'); } catch(e) {}
+      }
+    }
+  });
+
   // Prefer English labels where a "name" text layer exists.
   // Skip road shield/ref layers to avoid blank white boxes.
   map.getStyle().layers.forEach(layer => {
@@ -248,7 +268,11 @@ map.on('style.load', () => {
     if (!layer.layout || !layer.layout['text-field']) return;
 
     const id = (layer.id || '').toLowerCase();
-    if (id.includes('shield') || id.includes('ref') || id.includes('number') || id.includes('exit')) return;
+    // Hide road shield/number badge layers entirely (white box highway numbers)
+    if (id.includes('shield') || id.includes('ref') || id.includes('number') || id.includes('exit')) {
+      try { map.setLayoutProperty(layer.id, 'visibility', 'none'); } catch(e) {}
+      return;
+    }
 
     const tf = JSON.stringify(layer.layout['text-field']);
     if (!tf.includes('name')) return;
