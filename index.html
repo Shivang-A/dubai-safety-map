@@ -213,6 +213,17 @@
     border-color: var(--border) !important;
   }
   .leaflet-control-attribution { font-size:9px; opacity:.5; }
+  .en-map-label {
+    color: #24384d;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    text-shadow: 0 1px 2px rgba(255,255,255,0.85);
+    white-space: nowrap;
+    pointer-events: none;
+  }
   .cpop .leaflet-popup-content-wrapper {
     background: #fffdf8; border: 1px solid #d8d0c4;
     border-radius: 5px; color: #1a1a1a;
@@ -364,10 +375,32 @@ const map = L.map('map', {
   tap: true
 }).setView([25.05, 55.15], 11);
 
-L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
+  subdomains: 'abcd',
   maxZoom: 19,
-  attribution: 'Tiles &copy; Esri'
+  attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> &copy; <a href="https://carto.com/">CartoDB</a>'
 }).addTo(map);
+
+const EN_LABELS = [
+  { name: 'ABU DHABI', lat: 24.4539, lng: 54.3773 },
+  { name: 'DUBAI', lat: 25.2048, lng: 55.2708 },
+  { name: 'SHARJAH', lat: 25.3463, lng: 55.4209 },
+  { name: 'AL AIN', lat: 24.2075, lng: 55.7447 },
+  { name: 'JEBEL ALI', lat: 24.9900, lng: 55.0600 },
+  { name: 'PALM JUMEIRAH', lat: 25.1124, lng: 55.1390 }
+];
+
+EN_LABELS.forEach(label => {
+  L.marker([label.lat, label.lng], {
+    interactive: false,
+    keyboard: false,
+    icon: L.divIcon({
+      className: '',
+      html: `<div class="en-map-label">${label.name}</div>`,
+      iconSize: [10, 10]
+    })
+  }).addTo(map);
+});
 
 const circles1 = {}, circles2 = {}, circles3 = {};
 let r1 = 5 * 1000;
